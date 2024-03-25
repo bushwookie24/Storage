@@ -826,7 +826,7 @@ function utility.auto_button_color(button, color, hover, click, holder)
     local is_theme = typeof(color) == "string"
 
     --local mouse_over = false
-    local mouse_down = false
+    --local mouse_down = false
 
     --[[local enter = holder.MouseEnter:Connect(function()
         mouse_over = true
@@ -839,12 +839,12 @@ function utility.auto_button_color(button, color, hover, click, holder)
     end)]]
 
     local down = holder.MouseButton1Down:Connect(function()
-        mouse_down = true
+        --mouse_down = true
         button.Color = utility.color_add((is_theme and library.theme[color] or color), click)
     end)
 
     local up = holder.MouseButton1Up:Connect(function()
-        mouse_down = false
+        --mouse_down = false
         --button.Color = mouse_over and utility.color_add((is_theme and library.theme[color] or color), hover) or (is_theme and library.theme[color] or color)
         button.Color = is_theme and library.theme[color] or color
     end)
@@ -3854,8 +3854,8 @@ function library:Playerlist(max_players)
             player_data[plr].name = plr.Name
 
             spawn(function()
-                local thumbnail_data = services.HttpService:JSONDecode(syn.request{Url = ("https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=%s&size=60x60&format=Png"):format(plr.UserId), Method = "GET"}.Body)
-                local image = syn.request{Url = thumbnail_data.data[1].imageUrl, Method = "GET"}.Body
+                local thumbnail_data = services.HttpService:JSONDecode(request{Url = ("https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=%s&size=60x60&format=Png"):format(plr.UserId), Method = "GET"}.Body)
+                local image = request{Url = thumbnail_data.data[1].imageUrl, Method = "GET"}.Body
 
                 player_data[plr].image = image
                 
