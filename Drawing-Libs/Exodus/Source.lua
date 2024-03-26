@@ -5042,7 +5042,7 @@ function library:Load(options)
                         Font = library.font,
                         Size = library.font_size,
                         Theme = "Text",
-                        ZIndex = 78
+                        ZIndex = 9
                     })
     
                     return components.dropdown(holder, options)
