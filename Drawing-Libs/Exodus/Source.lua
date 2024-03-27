@@ -4061,7 +4061,7 @@ function library:Playerlist(max_players)
         utility.format(options)
 
         utility.defaults(options, {
-            player = services.Players.LocalPlayer,
+            player = nil,
             text = "Prioritize",
             color = fromRGB(255, 0, 0)
         })
