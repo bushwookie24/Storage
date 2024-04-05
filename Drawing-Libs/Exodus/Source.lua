@@ -1,9 +1,7 @@
 -- // Original Thread: https://v3rmillion.net/showthread.php?tid=1203135&highlight=exodus
 -- // Original Creator: https://v3rmillion.net/member.php?action=profile&uid=485232, Aka: Vozoid
 
-if not game:IsLoaded() then
-    game.Loaded:Wait()
-end
+repeat task.wait() until game:IsLoaded()
 
 -- // Localization
 
@@ -3572,7 +3570,7 @@ function library:Notify(options)
         OutlineTheme = "Tab Border"
     });
 
-    notification:Create("Text", {
+    local title = notification:Create("Text", {
         Text = options.title,
         Font = library.font,
         Size = library.font_size,
@@ -3594,7 +3592,7 @@ function library:Notify(options)
         Outline = true,
     }, true)
 
-    notification.Size = newUDim2(0, message.TextBounds.X + 30, 0, 40)
+    notification.Size = newUDim2(0, math.max(title.TextBounds.X, message.TextBounds.X) + 12, 0, 40)
 
     notification.Position = newUDim2(left and -1 or 1, left and -(notification.AbsoluteSize.X + 12) or 12, 0, top and (idx - 1) * 46 or (-idx + 1) * 46)
     notification:Tween(newInfo(self.notification_speed, library.easing_style), {Position = newUDim2(0, left and 0 or -notification.AbsoluteSize.X, 0, top and (idx - 1) * 46 or (-idx + 1) * 46)})
