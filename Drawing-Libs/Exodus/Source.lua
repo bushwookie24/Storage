@@ -4059,7 +4059,7 @@ function library:Playerlist(max_players)
         utility.format(options)
 
         utility.defaults(options, {
-            player = nil,
+            player = current_player,
             text = "Prioritize",
             color = fromRGB(255, 0, 0)
         })
@@ -4860,12 +4860,12 @@ function library:Load(options)
                 Position = newUDim2(0, -1, 0, -1),
                 Theme = "Section Background",
                 OutlineTheme = "Black Border",
-                ZIndex = 6,
+                ZIndex = 5,
             })
 
             local main = section:Create("Square", {
                 Size = newUDim2(1, 0, 0, 18),
-                ZIndex = 7,
+                ZIndex = 6,
                 Theme = "Section Background",
                 Outline = false
             })
