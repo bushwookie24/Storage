@@ -4059,7 +4059,7 @@ function library:Playerlist(max_players)
         utility.format(options)
 
         utility.defaults(options, {
-            player = current_player,
+            player = services.Players.LocalPlayer,
             text = "Prioritize",
             color = fromRGB(255, 0, 0)
         })
