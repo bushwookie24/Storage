@@ -1433,7 +1433,7 @@ function components.box(section, options, zindex)
         Text = options.default == "" and options.name or options.default,
         Font = library.font,
         Size = library.font_size,
-        Position = newUDim2(0.5, 0, 0, 1),
+        Position = newUDim2(0.5, 0, 0, 0),
         Theme = options.default == "" and "Disabled Text" or "Text",
         Center = true,
         ZIndex = zindex + 2
@@ -1519,7 +1519,7 @@ function components.slider(holder, options, zindex)
         Text = "",
         Font = library.font,
         Size = library.font_size,
-        Position = newUDim2(0.5, 0, 0, -2),
+        Position = newUDim2(0.5, 0, 0, -3),
         Theme = "Text",
         Center = true,
         ZIndex = zindex + 2
@@ -1729,7 +1729,7 @@ function components.keybind(holder, options, zindex)
         Text = "",
         Font = library.font,
         Size = library.font_size,
-        Position = newUDim2(0.5, 0, 0, 0),
+        Position = newUDim2(0.5, 0, 0, -1.75),
         Theme = "Disabled Text",
         Center = true,
         ZIndex = zindex + 1
@@ -1914,7 +1914,7 @@ function components.dropdown(holder, options, zindex)
         Text = "NONE",
         Font = library.font,
         Size = library.font_size,
-        Position = newUDim2(0, 6, 0, 1),
+        Position = newUDim2(0, 6, 0, -1),
         Theme = "Disabled Text",
         ZIndex = zindex + 1
     })
@@ -1923,7 +1923,7 @@ function components.dropdown(holder, options, zindex)
         Text = "+",
         Font = library.font,
         Size = library.font_size,
-        Position = newUDim2(1, -9, 0, 1),
+        Position = newUDim2(1, -9, 0, -1),
         Theme = "Text",
         Center = true,
         ZIndex = zindex + 1
@@ -2089,7 +2089,7 @@ function components.dropdown(holder, options, zindex)
             Text = name,
             Font = library.font,
             Size = library.font_size,
-            Position = newUDim2(0, 6, 0, 1),
+            Position = newUDim2(0, 6, 0, 0),
             Ignored = true,
             Theme = "Disabled Text",
             ZIndex = zindex + 11
