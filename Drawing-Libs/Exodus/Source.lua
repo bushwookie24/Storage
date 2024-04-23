@@ -862,25 +862,7 @@ function utility.getclipboard(release_ctrl)
     
     library.paste_textbox.Parent = services.CoreGui
     library.paste_textbox:CaptureFocus()
-    
-    if not is_synX then
-        keypress(Enum.KeyCode.LeftControl)
-        keypress(Enum.KeyCode.V)
-        keyrelease(Enum.KeyCode.V)
 
-        if release_ctrl then
-            keyrelease(Enum.KeyCode.LeftControl)
-        end
-    else
-        keypress(0x11)
-        keypress(0x56)
-        keyrelease(0x56)
-
-        if release_ctrl then
-            keyrelease(0x11)
-        end
-    end
-    
     library.paste_textbox:GetPropertyChangedSignal("Text"):Wait()
     
     local clipboard = library.paste_textbox.Text
