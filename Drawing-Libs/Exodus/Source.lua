@@ -1188,7 +1188,7 @@ function components.tooltip(object, text)
 end
 
 function components.separator(section, str, zindex)
-    zindex = zindex or 10;
+    zindex = zindex or 11;
     str = str or ""
 
     local holder = section.content:Create("Square", {
