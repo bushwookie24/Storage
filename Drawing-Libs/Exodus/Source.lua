@@ -23,6 +23,7 @@ local Tween={}do Tween.__index=Tween;local render=game:GetService("RunService").
 
 local customfont = Drawing.new("Font", "Proggy")
 customfont.Data = game:HttpGet("https://github.com/bushwookie24/Storage/raw/main/ProggyClean.ttf")
+repeat task.wait() until customfont.Loaded
 Drawing.Fonts.Plex = customfont
 
 -- // Library
