@@ -1242,7 +1242,7 @@ function components.separator(section, str, zindex)
 end
 
 function components.button(section, options, zindex)
-    zindex = zindex or 9;
+    zindex = zindex or 11;
 
     utility.format(options)
 
@@ -1289,7 +1289,7 @@ function components.button(section, options, zindex)
 end
 
 function components.toggle(holder, options, zindex)
-    zindex = zindex or 9;
+    zindex = zindex or 11;
 
     utility.format(options)
 
@@ -1411,7 +1411,7 @@ function components.toggle(holder, options, zindex)
 end
 
 function components.box(section, options, zindex)
-    zindex = zindex or 9
+    zindex = zindex or 11
 
     utility.format(options)
 
@@ -5265,7 +5265,7 @@ function library:Load(options)
             name = "Save Theme",
             callback = function()
                 if library.flags["selected_theme"] then
-                    library:Notify{title = "Theme", message = ("Successfully saved theme '%s'"):format(library.flags["selected_theme"])}
+                    library:Notify{title = "Theme", message = ("Successfully saved theme '%s'"):format(library.flags["selected_theme"]), duration = 5}
                     library:SaveTheme(library.flags["selected_theme"])
                 end
             end
