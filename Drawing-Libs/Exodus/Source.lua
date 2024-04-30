@@ -1766,7 +1766,7 @@ function components.keybind(holder, options, zindex)
                             library.keybind_list:Add(holder.name, "Disabled Text")
                         end
                     else
-                        if holder.toggled then
+                        if not holder.toggle or holder.toggled then
                             library.keybind_list:Add(holder.name, "Accent")
                         else
                             library.keybind_list:Add(holder.name, "Disabled Text")
