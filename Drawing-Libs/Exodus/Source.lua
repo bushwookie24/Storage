@@ -1766,7 +1766,11 @@ function components.keybind(holder, options, zindex)
                             library.keybind_list:Add(holder.name, "Disabled Text")
                         end
                     else
-                        library.keybind_list:Add(holder.name, "Accent")
+                        if holder.toggled then
+                            library.keybind_list:Add(holder.name, "Accent")
+                        else
+                            library.keybind_list:Add(holder.name, "Disabled Text")
+                        end
                     end
                 end
 
@@ -5142,7 +5146,7 @@ function library:Load(options)
         unload = unload or function() library.unload(library) end
 
         local settings = self:Tab("Settings")
-        local configs = settings:Section{name = "Configs"}
+        local configs = settings:Section{name = "Configuration"}
         local autoload
 
         local config_dropdown = configs:Dropdown{
@@ -5179,7 +5183,7 @@ function library:Load(options)
             callback = function()
                 if library:CreateConfig(library.flags["config_name"]) and not config_dropdown:Exists(library.flags["config_name"]) then
                     config_dropdown:Add(library.flags["config_name"])
-                    library:Notify{title = "Configuration", message = ("Successfully created config '%s'"):format(library.flags["config_name"]), duration = 5}
+                    library:Notify{title = "Configuration", message = ("Successfully Created Config: '%s'"):format(library.flags["config_name"]), duration = 5}
                 end
             end
         }
@@ -5189,7 +5193,7 @@ function library:Load(options)
             callback = function()
                 if library.flags["selected_config"] then
                     if (library:SaveConfig(library.flags["selected_config"])) then
-                        library:Notify{title = "Configuration", message = ("Successfully saved config '%s'"):format(library.flags["selected_config"]), duration = 5}
+                        library:Notify{title = "Configuration", message = ("Successfully Saved Config: '%s'"):format(library.flags["selected_config"]), duration = 5}
                     end
                 end
             end
@@ -5199,7 +5203,7 @@ function library:Load(options)
             name = "Load Config",
             callback = function()
                 if (library:LoadConfig(library.flags["selected_config"])) then
-                    library:Notify{title = "Configuration", message = ("Successfully loaded config '%s'"):format(library.flags["selected_config"]), duration = 5}
+                    library:Notify{title = "Configuration", message = ("Successfully Loaded Config: '%s'"):format(library.flags["selected_config"]), duration = 5}
                 end
             end
         }
@@ -5211,7 +5215,7 @@ function library:Load(options)
                 if (selected) then
                     library:DeleteConfig(selected);
                     config_dropdown:Refresh(library:GetConfigs())
-                    library:Notify{title = "Configuration", message = ("Successfully deleted config '%s'"):format(selected), duration = 5};
+                    library:Notify{title = "Configuration", message = ("Successfully Deleted Config: '%s'"):format(selected), duration = 5};
                 end
             end
         }
@@ -5228,7 +5232,7 @@ function library:Load(options)
                         library:SetAutoLoadConfig(value and selected or "");
 
                         if (value) then
-                            library:Notify{title = "Configuration", message = ("Successfully set config '%s' as auto load"):format(library.flags["selected_config"])}
+                            library:Notify{title = "Configuration", message = ("Successfully Set Config '%s' As Auto Load"):format(library.flags["selected_config"]), duration = 5}
                         end
                     end
                 end
@@ -5266,7 +5270,7 @@ function library:Load(options)
             name = "Save Theme",
             callback = function()
                 if library.flags["selected_theme"] then
-                    library:Notify{title = "Theme", message = ("Successfully saved theme '%s'"):format(library.flags["selected_theme"]), duration = 5}
+                    library:Notify{title = "Theme", message = ("Successfully Saved Theme: '%s'"):format(library.flags["selected_theme"]), duration = 5}
                     library:SaveTheme(library.flags["selected_theme"])
                 end
             end
@@ -5453,6 +5457,13 @@ function library:Load(options)
                 if style then
                     library.easing_style = Enum.EasingStyle[style]
                 end
+            end
+        }
+
+        misc:Button{
+            name = "Rejoin",
+            callback = function()
+                game:GetService("TeleportService"):Teleport(game.PlaceId, services.Players.LocalPlayer)
             end
         }
 
