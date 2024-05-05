@@ -1848,30 +1848,34 @@ function components.keybind(holder, options, zindex)
         end)
     end)
 
-    library:Connect(services.UserInputService.InputBegan, function(input)
-        if not binding and (input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode or input.UserInputType) == library.flags[options.flag] then
-            if holder.toggle and options.mode ~= "hold" then
-                holder.toggle()
+    library:Connect(services.UserInputService.InputBegan, function(input, typing)
+        if not typing then
+            if not binding and (input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode or input.UserInputType) == library.flags[options.flag] then
+                if holder.toggle and options.mode ~= "hold" then
+                    holder.toggle()
+                end
+    
+                if options.mode == "hold" and (holder.toggled ~= nil and holder.toggled) then
+                    library.keybind_list:ChangeObjectTheme(holder.name, "Accent")
+                    library.flags[options.flag .. "_holding"] = true
+                end
+            
+                options.callback(library.flags[options.flag], false, options.mode == "hold" and true)
             end
-
-            if options.mode == "hold" and (holder.toggled ~= nil and holder.toggled) then
-                library.keybind_list:ChangeObjectTheme(holder.name, "Accent")
-                library.flags[options.flag .. "_holding"] = true
-            end
-        
-            options.callback(library.flags[options.flag], false, options.mode == "hold" and true)
         end
     end)
 
     if options.mode == "hold" then
-        library:Connect(services.UserInputService.InputEnded, function(input)
-            if (input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode or input.UserInputType) == library.flags[options.flag] then
-                if not holder.toggle or holder.toggled then
-                    library.keybind_list:ChangeObjectTheme(holder.name, "Disabled Text")
+        library:Connect(services.UserInputService.InputEnded, function(input, typing)
+            if not typing then
+                if (input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode or input.UserInputType) == library.flags[options.flag] then
+                    if not holder.toggle or holder.toggled then
+                        library.keybind_list:ChangeObjectTheme(holder.name, "Disabled Text")
+                    end
+    
+                    library.flags[options.flag .. "_holding"] = false
+                    options.callback(library.flags[options.flag], false, false)
                 end
-
-                library.flags[options.flag .. "_holding"] = false
-                options.callback(library.flags[options.flag], false, false)
             end
         end)
     end
