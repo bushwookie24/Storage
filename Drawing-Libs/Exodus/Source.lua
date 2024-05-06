@@ -4945,7 +4945,7 @@ function library:Load(options)
                         Font = library.font,
                         Size = library.font_size,
                         Theme = "Text",
-                        ZIndex = 8
+                        ZIndex = 11
                     })
     
                     self:Resize()
