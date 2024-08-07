@@ -4840,7 +4840,7 @@ function library:Load(options)
 
             local section = column:Create("Square", {
                 Size = newUDim2(1, 0, 0, 40),
-                ZIndex = 6,
+                ZIndex = 7,
                 Theme = "Section Background",
                 OutlineTheme = "Section Border"
             })
@@ -4850,12 +4850,12 @@ function library:Load(options)
                 Position = newUDim2(0, -1, 0, -1),
                 Theme = "Section Background",
                 OutlineTheme = "Black Border",
-                ZIndex = 5,
+                ZIndex = 6,
             })
 
             local main = section:Create("Square", {
                 Size = newUDim2(1, 0, 0, 18),
-                ZIndex = 6,
+                ZIndex = 7,
                 Theme = "Section Background",
                 Outline = false
             })
@@ -4864,7 +4864,7 @@ function library:Load(options)
                 Size = newUDim2(1, 2, 1, 2),
                 Position = newUDim2(0, -1, 0, -1),
                 Theme = "Section Border",
-                ZIndex = 5,
+                ZIndex = 6,
                 OutlineTheme = "Black Border"
             });
 
