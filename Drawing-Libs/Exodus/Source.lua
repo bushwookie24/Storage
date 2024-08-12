@@ -3875,7 +3875,7 @@ function library:Playerlist(max_players)
             })
 
             local bounds = bar:Create("Text", {
-                Text = plr.Name,
+                Text = "(" .. plr.DisplayName .. ") " .. plr.Name,
                 Font = library.font,
                 Size = library.font_size,
                 Center = false,
