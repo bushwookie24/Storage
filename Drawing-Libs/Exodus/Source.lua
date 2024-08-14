@@ -1,7 +1,9 @@
 -- // Original Thread: https://v3rmillion.net/showthread.php?tid=1203135&highlight=exodus
 -- // Original Creator: https://v3rmillion.net/member.php?action=profile&uid=485232, Aka: Vozoid
 
-repeat task.wait() until game:IsLoaded()
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
 
 -- // Localization
 
